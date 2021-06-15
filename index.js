@@ -1,18 +1,14 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.get('/diegogay', function (req, res) {
-  res.send('si papi confirmo');
-});
-
 
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port 5000!');
+  console.log('Example app listening on port 3000!');
 });
