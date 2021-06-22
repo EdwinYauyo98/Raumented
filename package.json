@@ -1,6 +1,10 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^8.6.8",
+    "nodemon": "^2.0.7"
   },
   "name": "raumentedbackend",
   "version": "1.0.0",
@@ -8,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +25,4 @@
   },
   "homepage": "https://github.com/EdwinYauyo98/Raumented#readme",
   "description": ""
-
 }
