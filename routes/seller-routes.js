@@ -1,12 +1,14 @@
 const express = require('express');
 const {addSeller,
-      loginSeller
+      loginSeller,
+      editSeller
 } = require('../controllers/sellerController');
 
 const router = express.Router();
 
-router.post('/seller', addSeller);
+router.post('/addseller', addSeller);
 router.post('/loginSeller', loginSeller);
+router.put('/editSeller/:idSeller', editSeller);
 
 module.exports = {
     routes: router

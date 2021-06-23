@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const enterpriseRoutes = require('./routes/enterprise-routes');
 const sellerRoutes = require('./routes/seller-routes');
+const productRoutes = require('./routes/product-routes');
+const photoRoutes = require('./routes/photo-routes');
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(bodyParser.json());
 
 app.use('/api', enterpriseRoutes.routes);
 app.use('/api', sellerRoutes.routes);
+app.use('/api', productRoutes.routes);
+app.use('/api', photoRoutes.routes);
 
 
 

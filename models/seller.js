@@ -7,3 +7,5 @@ class Seller {
         this.password = password;
     }
 }
+
+module.exports = Seller;

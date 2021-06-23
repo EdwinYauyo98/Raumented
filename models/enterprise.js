@@ -9,3 +9,5 @@ class Enterprise{
         this.password = password;
     }
 }
+
+module.exports = Enterprise;
