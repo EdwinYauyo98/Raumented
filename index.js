@@ -8,6 +8,7 @@ const enterpriseRoutes = require('./routes/enterprise-routes');
 const sellerRoutes = require('./routes/seller-routes');
 const productRoutes = require('./routes/product-routes');
 const photoRoutes = require('./routes/photo-routes');
+const puerto =process.env.PORT || 3000;
 
 const app = express();
 
@@ -24,4 +25,4 @@ app.use('/api', photoRoutes.routes);
 
 
 
-app.listen(config.port, () => console.log('App is listening on url http://localhost:' + config.port));
+app.listen(puerto, () => console.log('App is listening on url http://localhost:' + config.port));
