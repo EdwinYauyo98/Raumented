@@ -1,11 +1,11 @@
 'use strict';
 const dotenv = require('dotenv');
 const assert = require('assert');
-
+const PORTENV = config.env.port || 3000
 dotenv.config()
 
 const {
-    PORT,
+    PORT = PORTENV,
     HOST,
     HOST_URL,
     API_KEY,
