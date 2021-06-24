@@ -23,6 +23,8 @@ app.use('/api', photoRoutes.routes);
 
 
 
-
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
 app.listen(puerto, () => console.log('App is listening on url http://localhost:' + config.port));
