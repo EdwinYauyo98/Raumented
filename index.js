@@ -8,7 +8,6 @@ const enterpriseRoutes = require('./routes/enterprise-routes');
 const sellerRoutes = require('./routes/seller-routes');
 const productRoutes = require('./routes/product-routes');
 const photoRoutes = require('./routes/photo-routes');
-//const puerto =process.env.PORT || 3000;
 
 const app = express();
 
