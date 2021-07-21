@@ -10,7 +10,16 @@ const addProduct = async (req, res, next) =>{
         const idSeller = req.params.idSeller;
         const data = req.body;
         await firestore.collection('Market').doc(idSeller).collection('Products').doc().set(data);
-        res.send('Producto registrado');
+        const productRef = firestore.collection('Market').doc(idSeller).collection('Products');
+        const snapshot =  await productRef.where('Name', '==', data.Name).get();
+        if(snapshot.empty){
+            res.send('Producto no registrado');
+        }
+        else{
+            snapshot.forEach(element => {
+              res.json({"idProduct": element.id});
+            });
+        }
     }
     catch(error){
         res.status(400).send('error.message')
