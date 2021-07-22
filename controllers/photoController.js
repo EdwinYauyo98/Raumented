@@ -43,6 +43,17 @@ const getPhotos = async (req, res, next) => {
     }
 }
 
+const deleteGallery = async (req, res, next) => {
+    try {
+        const idSeller = req.params.idSeller;
+        await firestore.collection('ProductGallery').doc(idSeller).delete();
+        res.send('eliminado');
+        
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 const editPhoto = async (req, res, next) => {
     try{
         const idSeller = req.params.idSeller;
@@ -60,5 +71,6 @@ const editPhoto = async (req, res, next) => {
 module.exports = {
     uploadPhoto,
     getPhotos,
-    editPhoto
+    editPhoto,
+    deleteGallery
 }

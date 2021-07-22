@@ -51,6 +51,51 @@ const loginSeller = async (req, res, next) =>{
     }
 }
 
+const getSellers = async(req, res, next) =>{
+    try {
+        const sellerRef = firestore.collection('Seller');
+        const data = await sellerRef.get();
+        const idsellerArray = [];
+        const sellerArray = [];
+        if(data.empty){
+            res.status(404).send('No hay sellers para mostrar');
+        } else{
+            data.forEach(element => {
+                const seller = new Seller(
+                    element.data().DNI,
+                    element.data().Name,
+                    element.data().Contact,
+                    element.data().Email,
+                    element.data().Password
+                );
+                idsellerArray.push(element.id);
+                sellerArray.push(seller);
+            });
+            res.json({idsellerArray, sellerArray});
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const getSeller = async(req, res, next) =>{
+    try{
+        const idSeller = req.params.idSeller;
+        const sellerRef = firestore.collection('Seller').doc(idSeller);
+        const data = await sellerRef.get();
+        if (data.empty){
+            res.status(400).send("No existe este Seller")
+        }
+        else{  
+            res.json(data.data());
+        }
+
+    }
+    catch(error){
+        res.status(400).send(error.message);
+    }
+}
+
 const editSeller = async (req, res, next) =>{
     try {
         const idSeller = req.params.idSeller;
@@ -66,5 +111,7 @@ const editSeller = async (req, res, next) =>{
 module.exports = {
     addSeller,
     loginSeller,
-    editSeller
+    editSeller,
+    getSeller,
+    getSellers
 }
