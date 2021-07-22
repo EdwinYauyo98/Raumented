@@ -51,6 +51,23 @@ const deleteProduct = async (req, res, next) => {
     }
 }
 
+const getProduct = async(req, res, next) =>{
+    try {
+        const idSeller = req.params.idSeller;
+        const idProduct = req.params.idProduct;
+        const productRef = firestore.collection('Market').doc(idSeller).collection('Products').doc(idProduct);
+        const data = await productRef.get();
+        if (data.empty){
+            res.status(400).send("No existe este Producto")
+        }
+        else{  
+            res.json(data.data());
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 const getProducts = async (req, res, next) =>{
     try {
         const idSeller = req.params.idSeller;
@@ -86,5 +103,6 @@ module.exports = {
     addProduct,
     editProduct,
     deleteProduct,
-    getProducts
+    getProducts,
+    getProduct
 }
