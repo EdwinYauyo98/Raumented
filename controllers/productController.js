@@ -73,25 +73,27 @@ const getProducts = async (req, res, next) =>{
         const idSeller = req.params.idSeller;
         const producstRef = firestore.collection('Market').doc(idSeller).collection('Products');
         const data = await producstRef.get();
+        
         const productArray = [];
-        const idProductsArray = [];
+
         if(data.empty){
             res.status(404).send('No hay productos para este seller');
         }
         else{
             data.forEach(element => {
                 const product = new Product(
+                    element.id,
                     element.data().Name,
                     element.data().Price,
                     element.data().Description,
                     element.data().id_photo,
                     element.data().link
                 );
-                idProductsArray.push(element.id);
+                
                 productArray.push(product);
             });
             //res.send(idProductsArray);
-            res.json({idProductsArray, productArray});
+            res.json({productArray});
         }
 
     } catch (error) {
