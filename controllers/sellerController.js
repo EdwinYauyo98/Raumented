@@ -51,24 +51,6 @@ const loginSeller = async (req, res, next) =>{
     }
 }
 
-const getSeller = async(req, res, next) =>{
-    try{
-        const idSeller = req.params.idSeller;
-        const sellerRef = firestore.collection('Seller').doc(idSeller);
-        const data = await sellerRef.get();
-        if (data.empty){
-            res.status(400).send("No existe este Seller")
-        }
-        else{  
-            res.json(data.data());
-        }
-
-    }
-    catch(error){
-        res.status(400).send(error.message);
-    }
-}
-
 const editSeller = async (req, res, next) =>{
     try {
         const idSeller = req.params.idSeller;
@@ -84,6 +66,5 @@ const editSeller = async (req, res, next) =>{
 module.exports = {
     addSeller,
     loginSeller,
-    editSeller,
-    getSeller
+    editSeller
 }
